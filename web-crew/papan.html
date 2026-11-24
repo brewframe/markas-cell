@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Papan Tugas · Markas Cell</title>
+  <meta name="theme-color" content="#12110f">
+  <link rel="icon" href="img/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Silkscreen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/crew.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wadah">
+    <a class="merek" href="index.html"><img src="img/logo.svg" alt=""> MARKAS <b>CELL</b></a>
+    <nav class="nav-menu" aria-label="Menu utama">
+      <a href="index.html">Beranda</a>
+      <a href="papan.html" aria-current="page">Papan Tugas</a>
+      <a href="crew.html">Kenali Crew</a>
+      <a href="pantau.html">Pantau</a>
+      <a href="/lama/markas.html" data-perlu-server>Gedung 3D</a>
+    </nav>
+    <div class="nav-kanan">
+      <span class="lencana-live"><i class="titik demo"></i><span class="teks">Memeriksa…</span></span>
+      <button class="tombol-menu" aria-label="Buka menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="wadah">
+  <section class="kepala-halaman">
+    <span class="label" data-muncul>Papan tugas</span>
+    <h1 data-muncul style="--jeda:1">Semua tugas crew, dari antre sampai OK.</h1>
+    <p data-muncul style="--jeda:2">Setiap kartu adalah satu tugas di database. Kartu bergerak ke kanan saat agent menyelesaikan langkahnya. Hanya kamu yang bisa memindahkannya ke <b>Selesai</b>.</p>
+  </section>
+
+  <section class="atas-papan" data-muncul style="--jeda:2">
+    <form class="panel" id="form-perintah" autocomplete="off">
+      <div class="panel-kepala"><h3>Beri perintah ke Jarvis</h3><span class="tag" id="tag-perintah">owner</span></div>
+      <label class="sr" for="teks-perintah">Isi perintah</label>
+      <textarea class="input" id="teks-perintah" minlength="5" maxlength="2000" required placeholder="Contoh: Buat landing page untuk Bengkel Maju Jaya, warna biru, ada tombol WhatsApp."></textarea>
+      <div class="form-baris">
+        <label class="sr" for="prioritas">Prioritas</label>
+        <select class="input" id="prioritas"><option value="normal">Prioritas normal</option><option value="tinggi">Prioritas tinggi</option><option value="rendah">Prioritas rendah</option></select>
+        <button class="tombol tombol-emas tombol-kecil" type="submit" id="kirim-perintah">Kirim ke Jarvis →</button>
+      </div>
+      <p class="catatan" id="catatan-perintah"></p>
+    </form>
+
+    <div class="panel" id="panel-akses">
+      <div class="panel-kepala"><h3 id="judul-akses">Masuk sebagai Owner</h3><span class="tag" id="tag-akses">tamu</span></div>
+      <form id="form-masuk" autocomplete="off">
+        <label class="sr" for="kunci">Kunci owner</label>
+        <input class="input" id="kunci" type="password" minlength="8" maxlength="200" placeholder="Tempel kunci owner dari file .env" style="width:100%">
+        <div class="form-baris"><button class="tombol tombol-garis tombol-kecil" type="submit">Masuk</button></div>
+      </form>
+      <div id="sudah-masuk" hidden>
+        <p class="catatan" style="margin-top:0">Kamu masuk sebagai <b>Owner</b>. Kamu bisa memberi perintah dan menyetujui hasil.</p>
+        <div class="form-baris">
+          <button class="tombol tombol-emas tombol-kecil" type="button" id="kirim-laporan">Kirim laporan ke WA</button>
+          <button class="tombol tombol-garis tombol-kecil" type="button" id="keluar">Keluar</button>
+        </div>
+        <p class="catatan" id="hasil-laporan"></p>
+      </div>
+      <p class="catatan" id="catatan-akses"></p>
+      <div class="form-baris" id="alat-demo" hidden>
+        <button class="tombol tombol-garis tombol-kecil" type="button" id="tombol-jalan">▶ Jalankan otomatis</button>
+        <button class="tombol tombol-garis tombol-kecil" type="button" id="tombol-reset">Reset contoh</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="papan" id="papan" aria-label="Papan tugas" aria-live="polite"></section>
+</main>
+
+<dialog class="dialog" id="dialog-tugas" aria-labelledby="judul-dialog">
+  <button class="tutup" type="button" aria-label="Tutup" data-tutup>✕</button>
+  <div id="isi-tugas"></div>
+</dialog>
+
+<dialog class="dialog" id="dialog-revisi" aria-labelledby="judul-revisi">
+  <form method="dialog" id="form-revisi">
+    <div class="dialog-kepala"><div><h2 id="judul-revisi">Minta revisi</h2><div class="sub" id="sub-revisi"></div></div></div>
+    <div class="dialog-isi">
+      <label for="alasan-revisi" class="catatan" style="display:block;margin:0 0 8px">Apa yang harus diperbaiki? (minimal 3 huruf)</label>
+      <textarea class="input" id="alasan-revisi" minlength="3" maxlength="1000" required></textarea>
+      <div class="dialog-aksi">
+        <button class="tombol tombol-garis tombol-kecil" type="button" data-tutup>Batal</button>
+        <button class="tombol tombol-emas tombol-kecil" type="submit" value="kirim">Kirim revisi</button>
+      </div>
+    </div>
+  </form>
+</dialog>
+
+<footer class="kaki">
+  <div class="wadah">
+    <span>© 2026 Markas Cell</span>
+    <span>Warna kolom = warna jendela logo</span>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/pixel.js"></script>
+<script src="js/umum.js"></script>
+<script src="js/papan.js"></script>
+</body>
+</html>

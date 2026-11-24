@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pantau Biaya · Markas Cell</title>
+  <meta name="theme-color" content="#12110f">
+  <link rel="icon" href="img/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Silkscreen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/crew.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wadah">
+    <a class="merek" href="index.html"><img src="img/logo.svg" alt=""> MARKAS <b>CELL</b></a>
+    <nav class="nav-menu" aria-label="Menu utama">
+      <a href="index.html">Beranda</a>
+      <a href="papan.html">Papan Tugas</a>
+      <a href="crew.html">Kenali Crew</a>
+      <a href="pantau.html" aria-current="page">Pantau</a>
+      <a href="/lama/markas.html" data-perlu-server>Gedung 3D</a>
+    </nav>
+    <div class="nav-kanan">
+      <span class="lencana-live"><i class="titik demo"></i><span class="teks">Memeriksa…</span></span>
+      <button class="tombol-menu" aria-label="Buka menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="wadah">
+  <section class="kepala-halaman">
+    <span class="label" data-muncul>Pantau</span>
+    <h1 data-muncul style="--jeda:1">Berapa token yang dipakai hari ini?</h1>
+    <p data-muncul style="--jeda:2" id="ket-pantau">Pemakaian token dan biaya setiap agent, beban laptop, dan catatan kejadian terbaru.</p>
+  </section>
+
+  <section class="statistik" data-muncul style="--jeda:2;margin-bottom:16px">
+    <div class="stat" style="--w:var(--emas)"><div class="k"><i></i>Token hari ini</div><b id="p-token">0</b><small id="p-tanggal">-</small></div>
+    <div class="stat" style="--w:var(--s-selesai)"><div class="k"><i></i>Biaya</div><b id="p-biaya">$0</b><small>perkiraan dalam USD</small></div>
+    <div class="stat" style="--w:var(--s-kerja)"><div class="k"><i></i>Panggilan AI</div><b id="p-panggilan">0</b><small>kali hari ini</small></div>
+    <div class="stat" style="--w:var(--s-qa)"><div class="k"><i></i>Tugas selesai</div><b id="p-selesai">0</b><small id="p-gagal">0 gagal</small></div>
+    <div class="stat" style="--w:var(--s-santai)"><div class="k"><i></i>Worker</div><b id="p-mode" style="font-size:28px">-</b><small id="p-worker">-</small></div>
+  </section>
+
+  <section class="grid-pantau">
+    <div class="panel" data-muncul style="--jeda:1">
+      <div class="panel-kepala"><h3>Token per agent</h3><span class="tag" id="p-jml-agent">0 agent</span></div>
+      <div id="p-batang"></div>
+    </div>
+    <div style="display:grid;gap:16px;align-content:start">
+      <div class="panel" data-muncul style="--jeda:2">
+        <div class="panel-kepala"><h3>Beban laptop</h3><span class="tag" id="p-cpu-ram">CPU - · RAM -</span></div>
+        <svg class="grafik-garis" id="p-grafik" viewBox="0 0 300 120" preserveAspectRatio="none" role="img" aria-label="Grafik CPU dan RAM"></svg>
+        <p class="catatan"><span style="color:var(--emas)">■</span> CPU &nbsp; <span style="color:var(--s-kerja)">■</span> RAM · 120 titik terakhir, tiap 3 detik</p>
+      </div>
+      <div class="panel" data-muncul style="--jeda:3">
+        <div class="panel-kepala"><h3>Catatan kejadian</h3><span class="tag">terbaru di atas</span></div>
+        <div class="log-daftar" id="p-log"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="kaki">
+  <div class="wadah">
+    <span>© 2026 Markas Cell</span>
+    <span>Data: tabel token, metrik & log di database</span>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/pixel.js"></script>
+<script src="js/umum.js"></script>
+<script src="js/pantau.js"></script>
+</body>
+</html>

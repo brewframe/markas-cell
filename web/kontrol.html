@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontrol · Markas Cell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=Silkscreen&display=swap">
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
+<link rel="stylesheet" href="css/gaya.css">
+</head>
+<body data-hal="kontrol">
+<header class="nav">
+  <div class="nav-isi">
+    <a class="logo" href="index.html" aria-label="Markas Cell, beranda"><img class="logo-img" src="img/logo.svg" alt="" width="32" height="32"><span>MARKAS <b>CELL</b></span></a>
+    <nav class="nav-menu" aria-label="Menu utama">
+      <a href="index.html" data-hal="beranda">Beranda</a>
+      <a href="markas.html" data-hal="markas">Gedung 3D</a>
+      <a href="agent.html" data-hal="agent">Skill Agent</a>
+      <a href="kontrol.html" data-hal="kontrol">Kontrol</a>
+    </nav>
+    <div class="nav-kanan">
+      <span class="live" id="navLive"><i></i><span>Menghubungkan</span></span>
+      <span class="jam" id="navJam">--:--</span>
+      <button class="tema" id="tombolTema" type="button" aria-label="Ganti tema terang/gelap" title="Tema terang/gelap">◐</button>
+    </div>
+  </div>
+</header>
+<main class="halaman">
+  <div class="halaman-kepala">
+    <div>
+      <span class="label-kecil">Mission control</span>
+      <h1>Kontrol markas</h1>
+      <p>Beri perintah ke Jarvis, periksa hasil yang sudah lolos QA, lalu setujui. Tugas hanya dianggap selesai setelah kamu menyetujuinya.</p>
+    </div>
+    <div class="kartu sesi" id="sesi" aria-live="polite"></div>
+  </div>
+
+  <div class="ubin" style="margin-bottom:14px">
+    <div class="kartu"><small>Sedang kerja</small><b id="uKerja" style="color:var(--kerja)">0</b></div>
+    <div class="kartu"><small>Perlu OK darimu</small><b id="uTunggu" style="color:var(--menunggu)">0</b></div>
+    <div class="kartu"><small>Tugas aktif</small><b id="uTugas">0</b></div>
+    <div class="kartu"><small id="uTokenKet">Token hari ini</small><b id="uToken">0</b></div>
+  </div>
+
+  <div class="kisi-kontrol">
+    <section class="kartu c-5" aria-labelledby="hPerintah">
+      <h2 id="hPerintah">Perintah ke Jarvis <small>Jarvis memecahnya jadi tugas untuk Bayu</small></h2>
+      <form class="form-perintah" id="formPerintah">
+        <textarea class="input" id="pTeks" rows="4" minlength="5" maxlength="2000" required aria-label="Isi perintah"
+          placeholder="contoh: Buatkan landing page satu halaman untuk laundry kiloan di Bandung: hero, daftar harga contoh, cara pesan, tombol WhatsApp. Responsif di HP."></textarea>
+        <div class="baris-form">
+          <select class="input" id="pPrio" aria-label="Prioritas"><option value="normal">Prioritas normal</option><option value="tinggi">Prioritas tinggi</option><option value="rendah">Prioritas rendah</option></select>
+          <button class="btn btn-utama" type="submit">Kirim ke Jarvis</button>
+        </div>
+      </form>
+      <p class="pesan-info" id="pInfo"></p>
+      <h3 class="sub-judul">Perintah terakhir</h3>
+      <ul class="daftar-perintah" id="daftarPerintah"></ul>
+    </section>
+
+    <section class="kartu c-7" aria-labelledby="hOk">
+      <h2 id="hOk">Perlu persetujuanmu <small id="okJumlah"></small></h2>
+      <div id="daftarOk" class="daftar-review"></div>
+    </section>
+
+    <section class="kartu c-12" aria-labelledby="hTugas">
+      <h2 id="hTugas">Semua tugas <small id="tugasKet"></small></h2>
+      <div style="overflow-x:auto"><table class="tabel"><thead><tr><th>#</th><th>Agent</th><th>Tugas</th><th>Status</th><th>Percobaan</th><th>Aksi</th></tr></thead><tbody id="tTugas"></tbody></table></div>
+    </section>
+
+    <section class="kartu c-6" aria-labelledby="hToken">
+      <h2 id="hToken">Token hari ini per agent <small id="tokenTgl"></small></h2>
+      <div id="tokenBar"></div>
+      <p class="catatan-kecil">Angka dari laporan agent dan Claude Code, bukan tagihan resmi.</p>
+    </section>
+
+    <section class="kartu c-6" aria-labelledby="hMetrik">
+      <h2 id="hMetrik">Laptop: CPU & RAM <small id="metrikKet"></small></h2>
+      <canvas class="grafik" id="grafik" role="img" aria-label="Grafik CPU dan RAM"></canvas>
+      <div class="legenda"><span><i class="titik" style="background:#2f6fed"></i>CPU <b id="cpuNow">-</b></span><span><i class="titik" style="background:#e8a317"></i>RAM <b id="ramNow">-</b></span></div>
+    </section>
+
+    <section class="kartu c-12" aria-labelledby="hLog">
+      <h2 id="hLog">Log real-time <small>kejadian terbaru di bawah</small></h2>
+      <div class="konsol" id="konsol" role="log" aria-live="polite"></div>
+    </section>
+  </div>
+</main>
+<div class="laci-latar" id="laciLatar"></div>
+<aside class="laci laci-tugas" id="laci" aria-hidden="true" aria-label="Detail tugas"></aside>
+<script src="js/pixel.js"></script>
+<script src="js/api.js"></script>
+<script src="js/kontrol.js"></script>
+</body>
+</html>

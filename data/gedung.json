@@ -1,0 +1,36 @@
+{
+  "_catatan": "Denah Markas Cell 5 lantai. Ubah 'penempatan' untuk memindah agent ke ruangan lain. Ukuran dalam meter (x: kiri-kanan -15..15, z: belakang-depan -9..9). Lift ada di x 12..15, z -9..-3.",
+  "lantai": [
+    {"no": 1, "nama": "Lantai Klien", "julukan": "Pintu masuk & jalur uang", "warna": "#4cc38a"},
+    {"no": 2, "nama": "Lantai Produksi", "julukan": "Pabrik web, chatbot & video", "warna": "#ab7df8"},
+    {"no": 3, "nama": "Lantai Intel", "julukan": "Riset, berita & simulasi trading", "warna": "#2ec4b6"},
+    {"no": 4, "nama": "Lantai Eksekutif", "julukan": "Cell, Jarvis & asisten pribadi", "warna": "#f2c14e"},
+    {"no": 5, "nama": "Rooftop", "julukan": "Kolam, basket & garasi mobil sport", "warna": "#4fc3f7"}
+  ],
+  "ruang": [
+    {"id": "bisnis",   "lantai": 1, "nama": "Bisnis & Sales",        "divisi": ["bisnis"],   "x": -15, "z": -9,  "w": 14, "d": 7.5, "jenis": "kantor", "lantaiBahan": "karpetHijau"},
+    {"id": "properti", "lantai": 1, "nama": "Properti",              "divisi": ["properti"], "x": -1,  "z": -9,  "w": 13, "d": 7.5, "jenis": "kantor", "lantaiBahan": "kayuTerang"},
+    {"id": "lobi",     "lantai": 1, "nama": "Lobi & Resepsionis",    "divisi": ["lobi"],     "x": -15, "z": 1.5, "w": 30, "d": 7.5, "jenis": "lobi",   "lantaiBahan": "marmer"},
+
+    {"id": "studio",   "lantai": 2, "nama": "Studio Web & Chatbot",  "divisi": ["studio"],   "x": -15, "z": -9,  "w": 19, "d": 7.5, "jenis": "kantor", "lantaiBahan": "kayu"},
+    {"id": "qa",       "lantai": 2, "nama": "Lab QA & Security",     "divisi": ["qa"],       "x": 4,   "z": -9,  "w": 8,  "d": 7.5, "jenis": "kantor", "lantaiBahan": "ubinGelap"},
+    {"id": "video",    "lantai": 2, "nama": "Studio Video",          "divisi": [],           "x": -15, "z": 1.5, "w": 11, "d": 7.5, "jenis": "kantor", "lantaiBahan": "karpetAbu"},
+    {"id": "proyek",   "lantai": 2, "nama": "Ruang Proyek",          "divisi": [],           "x": -4,  "z": 1.5, "w": 19, "d": 7.5, "jenis": "proyek", "lantaiBahan": "kayuTerang"},
+
+    {"id": "riset",    "lantai": 3, "nama": "Riset & Info",          "divisi": ["riset"],    "x": -15, "z": -9,  "w": 12, "d": 7.5, "jenis": "kantor", "lantaiBahan": "karpetBiru"},
+    {"id": "finance",  "lantai": 3, "nama": "Finance & Trading",     "divisi": ["finance"],  "x": -3,  "z": -9,  "w": 15, "d": 7.5, "jenis": "kantor", "lantaiBahan": "ubinGelap"},
+    {"id": "data",     "lantai": 3, "nama": "Ruang Server",          "divisi": [],           "x": -15, "z": 1.5, "w": 15, "d": 7.5, "jenis": "server", "lantaiBahan": "ubinGelap"},
+    {"id": "perpus",   "lantai": 3, "nama": "Ruang Baca",            "divisi": [],           "x": 0,   "z": 1.5, "w": 15, "d": 7.5, "jenis": "baca",   "lantaiBahan": "kayu"},
+
+    {"id": "cell",     "lantai": 4, "nama": "Ruang Cell",            "divisi": [],           "x": -15, "z": -9,  "w": 12, "d": 7.5, "jenis": "owner",  "lantaiBahan": "kayuGelap"},
+    {"id": "jarvis",   "lantai": 4, "nama": "Command Room Jarvis",   "divisi": [],           "x": -3,  "z": -9,  "w": 15, "d": 7.5, "jenis": "jarvis", "lantaiBahan": "ubinGelap"},
+    {"id": "pribadi",  "lantai": 4, "nama": "Pribadi",               "divisi": ["pribadi"],  "x": -15, "z": 1.5, "w": 12, "d": 7.5, "jenis": "kantor", "lantaiBahan": "karpetPink"},
+    {"id": "rapat",    "lantai": 4, "nama": "Ruang Rapat",           "divisi": [],           "x": -3,  "z": 1.5, "w": 18, "d": 7.5, "jenis": "rapat",  "lantaiBahan": "karpetAbu"},
+
+    {"id": "kolam",    "lantai": 5, "nama": "Kolam Renang",          "divisi": [],           "x": -15, "z": -9,  "w": 12, "d": 10,  "jenis": "kolam",  "santai": true},
+    {"id": "basket",   "lantai": 5, "nama": "Lapangan Basket",       "divisi": [],           "x": -2,  "z": -9,  "w": 13, "d": 10,  "jenis": "basket", "santai": true},
+    {"id": "teras",    "lantai": 5, "nama": "Teras Santai",          "divisi": [],           "x": -15, "z": 2,   "w": 14, "d": 7,   "jenis": "teras",  "santai": true},
+    {"id": "garasi",   "lantai": 5, "nama": "Garasi Mobil Sport",    "divisi": [],           "x": 0,   "z": 2,   "w": 15, "d": 7,   "jenis": "garasi", "santai": true}
+  ],
+  "penempatan": {"Cell": "cell", "Jarvis": "jarvis", "Mica": "lobi", "Raka": "video"}
+}

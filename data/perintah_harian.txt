@@ -1,0 +1,8 @@
+# Perintah harian untuk Jarvis. Dikirim otomatis setiap pagi (jam di OTOMATIS_PASANG.bat).
+# Satu baris = satu perintah. Baris yang diawali # tidak dikirim.
+# Awali dengan ! untuk prioritas tinggi.
+# Hasilnya tetap MENUNGGU OK darimu di Papan Tugas.
+#
+# Contoh (hapus tanda # untuk mengaktifkan):
+# Buat ringkasan 5 berita AI terpenting hari ini dalam satu halaman HTML sederhana
+# !Periksa ulang landing page Laundry Bersih Jaya di tampilan HP dan catat yang perlu diperbaiki

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skill Agent · Markas Cell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=Silkscreen&display=swap">
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
+<link rel="stylesheet" href="css/gaya.css">
+</head>
+<body data-hal="agent">
+<header class="nav">
+  <div class="nav-isi">
+    <a class="logo" href="index.html" aria-label="Markas Cell, beranda"><img class="logo-img" src="img/logo.svg" alt="" width="32" height="32"><span>MARKAS <b>CELL</b></span></a>
+    <nav class="nav-menu" aria-label="Menu utama">
+      <a href="index.html" data-hal="beranda">Beranda</a>
+      <a href="markas.html" data-hal="markas">Gedung 3D</a>
+      <a href="agent.html" data-hal="agent">Skill Agent</a>
+      <a href="kontrol.html" data-hal="kontrol">Kontrol</a>
+    </nav>
+    <div class="nav-kanan">
+      <span class="live" id="navLive"><i></i><span>Menghubungkan</span></span>
+      <span class="jam" id="navJam">--:--</span>
+      <button class="tema" id="tombolTema" type="button" aria-label="Ganti tema terang/gelap" title="Tema terang/gelap">◐</button>
+    </div>
+  </div>
+</header>
+<main class="halaman">
+  <div class="halaman-kepala">
+    <div>
+      <span class="label-kecil">Dashboard skill</span>
+      <h1>Kenali tiap agent</h1>
+      <p>Apa keahliannya, apa yang dia terima dan hasilkan, alat apa yang boleh dipakai, dan siapa rekan kerjanya.</p>
+    </div>
+  </div>
+  <div class="saring">
+    <label class="cari"><span class="sr">Cari agent</span><input class="input" id="cari" type="search" placeholder="Cari nama, skill, alat, atau alias…" autocomplete="off"></label>
+    <select class="input" id="urut" style="width:auto" aria-label="Kelompokkan">
+      <option value="lantai">Kelompok: per lantai</option>
+      <option value="divisi">Kelompok: per divisi</option>
+      <option value="prioritas">Kelompok: per prioritas</option>
+    </select>
+  </div>
+  <div class="saring-chip" id="chipDivisi" aria-label="Saring divisi"></div>
+  <div id="kisi"></div>
+  <p class="kosong" id="kosong" hidden>Tidak ada agent yang cocok dengan pencarianmu.</p>
+</main>
+
+<div class="laci-latar" id="laciLatar"></div>
+<aside class="laci" id="laci" aria-hidden="true" aria-label="Detail agent"></aside>
+
+<script src="js/pixel.js"></script>
+<script src="js/api.js"></script>
+<script src="js/agent.js"></script>
+</body>
+</html>

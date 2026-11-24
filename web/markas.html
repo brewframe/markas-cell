@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gedung 3D · Markas Cell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=Silkscreen&display=swap">
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
+<link rel="stylesheet" href="css/gaya.css">
+</head>
+<body class="layar-penuh" data-hal="markas">
+<header class="nav lebar">
+  <div class="nav-isi">
+    <a class="logo" href="index.html" aria-label="Markas Cell, beranda"><img class="logo-img" src="img/logo.svg" alt="" width="32" height="32"><span>MARKAS <b>CELL</b></span></a>
+    <nav class="nav-menu" aria-label="Menu utama">
+      <a href="index.html" data-hal="beranda">Beranda</a>
+      <a href="markas.html" data-hal="markas">Gedung 3D</a>
+      <a href="agent.html" data-hal="agent">Skill Agent</a>
+      <a href="kontrol.html" data-hal="kontrol">Kontrol</a>
+      <a href="/papan.html">Papan Tugas</a>
+    </nav>
+    <div class="nav-kanan">
+      <span class="live" id="navLive"><i></i><span>Menghubungkan</span></span>
+      <span class="jam" id="navJam">--:--</span>
+      <button class="tema" id="tombolTema" type="button" aria-label="Ganti tema terang/gelap" title="Tema terang/gelap">◐</button>
+    </div>
+  </div>
+</header>
+<div class="markas">
+  <aside class="lift-panel" aria-label="Pilih lantai">
+    <span class="label-kecil">Lift · pilih lantai</span>
+    <div id="tombolLantai" style="display:contents"></div>
+    <div class="lift-pemisah"></div>
+    <label class="pilihan">Nama semua agent <input type="checkbox" id="optLabel"></label>
+    <label class="pilihan">Gelembung tugas <input type="checkbox" id="optGelembung" checked></label>
+    <label class="pilihan">Garis alur kerja <input type="checkbox" id="optGaris" checked></label>
+    <label class="pilihan">Putar otomatis <input type="checkbox" id="optPutar"></label>
+  </aside>
+
+  <section class="panggung" id="panggung" aria-label="Gedung 3D Markas Cell">
+    <canvas id="kanvas3d"></canvas>
+    <div id="lapisLabel" aria-hidden="true"></div>
+    <div class="panggung-atas">
+      <div class="kaca judul-lantai"><b id="judulLantai">Semua lantai</b><span id="ketLantai">Markas Cell · 5 lantai</span></div>
+      <div class="kaca hud-token" id="hudToken" title="Token AI yang dicatat worker hari ini (dari Claude Code, bukan angka contoh)">
+        <span>🪙 Token hari ini</span><b id="tTotal">0</b><small id="tBiaya"></small>
+      </div>
+      <div class="kaca hitung" aria-live="polite">
+        <span class="k-kerja"><i class="titik" style="background:var(--kerja);border-radius:50%"></i>kerja <b id="hKerja">0</b></span>
+        <span class="k-menunggu"><i class="titik" style="background:var(--menunggu);border-radius:50%"></i>tunggu OK <b id="hTunggu">0</b></span>
+        <span class="k-santai"><i class="titik" style="background:var(--santai);border-radius:50%"></i>santai <b id="hSantai">0</b></span>
+      </div>
+    </div>
+    <div class="kaca petunjuk-3d" id="petunjuk">Seret untuk memutar · gulir untuk zoom · klik karakter untuk detail</div>
+    <div class="memuat" id="memuat">MEMBANGUN GEDUNG…</div>
+  </section>
+
+  <aside class="sisi" aria-label="Panel informasi">
+    <div class="sisi-tab" role="tablist">
+      <button role="tab" aria-selected="true" data-tab="agent">Agent</button>
+      <button role="tab" aria-selected="false" data-tab="ok">Perlu OK <em id="nOk" hidden>0</em></button>
+      <button role="tab" aria-selected="false" data-tab="lapor">Perintah</button>
+      <button role="tab" aria-selected="false" data-tab="log">Log</button>
+    </div>
+    <div class="sisi-isi" id="tabAgent"></div>
+    <div class="sisi-isi" id="tabOk" hidden><ul class="daftar-ok" id="daftarOk"></ul></div>
+    <div class="sisi-isi" id="tabLapor" hidden>
+      <div class="kartu profil-mini" id="kotakMasuk" hidden>
+        <form id="formMasuk3d" class="form-masuk3d">
+          <b style="font-size:14px">Masuk sebagai owner</b>
+          <p class="pesan-info">Kunci ada di file <code>.env</code>, baris <code>MARKAS_KUNCI_OWNER</code>. Tanpa masuk kamu hanya bisa melihat.</p>
+          <input class="input" id="kunci3d" type="password" autocomplete="current-password" placeholder="tempel kunci owner">
+          <div style="display:flex;gap:8px;align-items:center"><button class="btn btn-kecil btn-utama" type="submit">Masuk</button><span class="pesan-info" id="infoMasuk3d"></span></div>
+        </form>
+      </div>
+      <form class="kartu profil-mini" id="formPerintah3d">
+        <b style="font-size:14px">Perintah ke Jarvis</b>
+        <p class="pesan-info">Jarvis memecah perintah jadi tugas, Bayu mengerjakan, Vera memeriksa, lalu hasil menunggu OK kamu. Tulis <i>"kirim laporan ke WA"</i> untuk laporan per agent ke WhatsApp.</p>
+        <textarea class="input" id="isiPerintah3d" maxlength="2000" placeholder="contoh: buatkan landing page laundry kiloan, responsif di HP"></textarea>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <button class="btn btn-kecil btn-utama" type="submit">Kirim ke Jarvis</button>
+          <label class="pesan-info" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="prioritas3d"> prioritas tinggi</label>
+        </div>
+        <span class="pesan-info" id="infoPerintah3d"></span>
+      </form>
+      <div class="kartu profil-mini">
+        <b style="font-size:14px">Laporan WhatsApp</b>
+        <p class="pesan-info" id="statusWa">Memeriksa setelan WA…</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-kecil" type="button" id="lihatLaporan">Lihat isi laporan</button>
+          <button class="btn btn-kecil btn-utama" type="button" id="kirimLaporan">Kirim laporan ke WA</button>
+        </div>
+        <span class="pesan-info" id="infoLaporan"></span>
+        <pre class="pratinjau-wa" id="isiLaporan" hidden></pre>
+      </div>
+    </div>
+    <div class="sisi-isi" id="tabLog" hidden><div class="konsol" id="konsol" style="height:auto;min-height:300px"></div></div>
+  </aside>
+</div>
+
+<script src="js/pixel.js"></script>
+<script src="js/api.js"></script>
+<script type="importmap">{"imports":{"three":"./lib/three.module.js","three/addons/":"./lib/addons/"}}</script>
+<script type="module" src="js/gedung3d.js"></script>
+</body>
+</html>

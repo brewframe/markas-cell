@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Markas Cell · AI Studio</title>
+<meta name="description" content="Markas Cell: gedung virtual 5 lantai tempat 29 agent AI bekerja. Status live, skill tiap agent, dan alur kerja dalam satu tempat.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=Silkscreen&display=swap">
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
+<link rel="stylesheet" href="css/gaya.css">
+</head>
+<body data-hal="beranda">
+<header class="nav">
+  <div class="nav-isi">
+    <a class="logo" href="index.html" aria-label="Markas Cell, beranda"><img class="logo-img" src="img/logo.svg" alt="" width="32" height="32"><span>MARKAS <b>CELL</b></span></a>
+    <nav class="nav-menu" aria-label="Menu utama">
+      <a href="index.html" data-hal="beranda">Beranda</a>
+      <a href="markas.html" data-hal="markas">Gedung 3D</a>
+      <a href="agent.html" data-hal="agent">Skill Agent</a>
+      <a href="kontrol.html" data-hal="kontrol">Kontrol</a>
+    </nav>
+    <div class="nav-kanan">
+      <span class="live" id="navLive"><i></i><span>Menghubungkan</span></span>
+      <span class="jam" id="navJam">--:--</span>
+      <button class="tema" id="tombolTema" type="button" aria-label="Ganti tema terang/gelap" title="Tema terang/gelap">◐</button>
+    </div>
+  </div>
+</header>
+
+<main class="bungkus">
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-labelledby="judulHero">
+    <div>
+      <span class="hero-label"><img src="img/logo-emas.svg" alt="" width="22" height="22" style="border-radius:6px"><b>AI STUDIO</b> Kantor virtual tim agent Cell</span>
+      <h1 id="judulHero">Satu gedung, <em>29 agent AI</em>, satu perintah.</h1>
+      <p class="hero-sub">Markas Cell adalah kantor virtual untuk tim agent AI. Setiap agent punya meja, keahlian, dan atasan. Cell cukup memberi perintah ke Jarvis, lalu semua pekerjaannya bisa dilihat langsung di gedung 5 lantai.</p>
+      <div class="hero-aksi">
+        <a class="btn btn-utama" href="markas.html">Masuk Gedung 3D <span aria-hidden="true">→</span></a>
+        <a class="btn" href="agent.html">Lihat skill tiap agent</a>
+      </div>
+      <div class="hero-angka" id="heroAngka">
+        <div><b>29</b><span>agent AI</span></div>
+        <div><b>9</b><span>divisi</span></div>
+        <div><b>8</b><span>manajer</span></div>
+        <div><b>5</b><span>lantai</span></div>
+      </div>
+    </div>
+    <div class="menara" aria-label="Penampang gedung Markas Cell, klik lantai untuk masuk">
+      <div class="menara-langit"></div><div class="menara-matahari" aria-hidden="true"></div>
+      <div class="menara-atap" aria-hidden="true"></div>
+      <div id="menara"></div>
+      <div class="menara-dasar" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- ============ STATUS LIVE ============ -->
+  <section class="kartu pita-live" aria-label="Status tim saat ini">
+    <div><span class="pita-ikon" style="background:#e3f5ec;color:var(--kerja)">▶</span><span><b id="lvKerja">0</b><small>sedang kerja</small></span></div>
+    <div><span class="pita-ikon" style="background:#fde6e6;color:var(--menunggu)">!</span><span><b id="lvTunggu">0</b><small>menunggu OK Cell</small></span></div>
+    <div><span class="pita-ikon" style="background:#e3eef8;color:var(--santai)">≈</span><span><b id="lvSantai">0</b><small>santai di rooftop</small></span></div>
+    <div><span class="pita-ikon" style="background:var(--emas-muda);color:var(--emas-tua)">◎</span><span><b id="lvToken">0</b><small id="lvTokenKet">token hari ini</small></span></div>
+  </section>
+
+  <!-- ============ CARA KERJA ============ -->
+  <section class="bagian" aria-labelledby="judulCara">
+    <div class="bagian-kepala">
+      <span class="label-kecil">Cara kerja</span>
+      <h2 id="judulCara">Dari satu kalimat sampai hasil siap kirim</h2>
+      <p>Agent jarang bekerja sendirian. Mereka saling menyerahkan pekerjaan seperti ban berjalan, dan semuanya terlihat di gedung.</p>
+    </div>
+    <div class="langkah" id="langkah"></div>
+    <p class="analogi"><b>Analogi gampangnya:</b> bayangkan sebuah restoran. Cell pemiliknya, Jarvis kepala pelayan yang membagi pesanan ke dapur yang tepat. Tiap divisi adalah satu dapur. Sebelum makanan keluar ke pelanggan, tim QA mencicipi, lalu pemilik memberi OK.</p>
+  </section>
+
+  <!-- ============ ISI GEDUNG ============ -->
+  <section class="bagian" aria-labelledby="judulGedung">
+    <div class="bagian-kepala">
+      <span class="label-kecil">Isi gedung</span>
+      <h2 id="judulGedung">5 lantai, dikelompokkan menurut alur kerja</h2>
+      <p>Agent yang sering serah-terima pekerjaan ditaruh di lantai yang sama. Lantai paling atas khusus untuk santai.</p>
+    </div>
+    <div class="direktori" id="direktori"></div>
+  </section>
+
+  <!-- ============ BAN BERJALAN ============ -->
+  <section class="bagian" aria-labelledby="judulAlur">
+    <div class="bagian-kepala">
+      <span class="label-kecil">Alur kerja utama</span>
+      <h2 id="judulAlur">4 ban berjalan yang paling sering dipakai</h2>
+      <p>Pilih satu alur untuk melihat siapa mengerjakan apa, berurutan dari awal sampai Cell memberi OK.</p>
+    </div>
+    <div class="alur-tab" role="tablist" id="alurTab"></div>
+    <div class="kartu alur" role="tabpanel" id="alurIsi"></div>
+  </section>
+
+  <!-- ============ ATURAN ============ -->
+  <section class="bagian" aria-labelledby="judulAturan">
+    <div class="bagian-kepala">
+      <span class="label-kecil">Aturan markas</span>
+      <h2 id="judulAturan">Aman dulu, cepat kemudian</h2>
+      <p>Aturan ini berlaku untuk semua agent tanpa kecuali.</p>
+    </div>
+    <div class="aturan" id="aturan"></div>
+  </section>
+
+  <!-- ============ FOKUS ============ -->
+  <section class="bagian">
+    <div class="kartu fokus">
+      <div>
+        <span class="label-kecil">Fokus sekarang</span>
+        <h2>Mendapat klien website pertama</h2>
+        <p>Tidak perlu menjalankan 29 agent sekaligus. Lima agent ini sudah cukup membentuk rantai <b style="color:#fff">cari → deal → kerjakan → pamerkan</b>. Yang lain diparkir dulu dan tidak memakan kuota.</p>
+      </div>
+      <div class="fokus-tim" id="fokusTim"></div>
+    </div>
+  </section>
+
+  <!-- ============ TEKNOLOGI ============ -->
+  <section class="bagian" aria-labelledby="judulTek">
+    <div class="bagian-kepala">
+      <span class="label-kecil">Di balik layar</span>
+      <h2 id="judulTek">Dibangun dengan</h2>
+    </div>
+    <div class="teknologi">
+      <span>FastAPI<small>backend & API</small></span>
+      <span>SQLite<small>database 8 tabel</small></span>
+      <span>Three.js<small>gedung 3D</small></span>
+      <span>Canvas pixel<small>karakter digambar dari kode</small></span>
+      <span>Claude Code hooks<small>status agent live</small></span>
+      <span>Python<small>skrip agent & tes</small></span>
+    </div>
+  </section>
+
+  <footer class="kaki">
+    <span style="display:flex;align-items:center;gap:10px"><img src="img/logo.svg" alt="Logo Markas Cell" width="28" height="28">Markas Cell · AI Studio</span>
+    <span>Semua karakter digambar dari kode. Angka token hanya dari laporan agent.</span>
+  </footer>
+</main>
+
+<script src="js/pixel.js"></script>
+<script src="js/api.js"></script>
+<script src="js/beranda.js"></script>
+</body>
+</html>

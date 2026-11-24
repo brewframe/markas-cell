@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Markas Cell · Tim Agent AI</title>
+  <meta name="description" content="Markas Cell: gedung virtual 29 agent AI. Satu perintah dari Cell, Jarvis membagi tugas, Bayu mengerjakan, Vera memeriksa.">
+  <meta name="theme-color" content="#12110f">
+  <link rel="icon" href="img/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Silkscreen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/crew.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wadah">
+    <a class="merek" href="index.html"><img src="img/logo.svg" alt=""> MARKAS <b>CELL</b></a>
+    <nav class="nav-menu" aria-label="Menu utama">
+      <a href="index.html" aria-current="page">Beranda</a>
+      <a href="papan.html">Papan Tugas</a>
+      <a href="crew.html">Kenali Crew</a>
+      <a href="pantau.html">Pantau</a>
+      <a href="/lama/markas.html" data-perlu-server>Gedung 3D</a>
+    </nav>
+    <div class="nav-kanan">
+      <span class="lencana-live"><i class="titik demo"></i><span class="teks">Memeriksa…</span></span>
+      <button class="tombol-menu" aria-label="Buka menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="wadah">
+      <div>
+        <span class="label" data-muncul>AI Studio · Agent HQ</span>
+        <h1 data-muncul style="--jeda:1">Satu perintah.<br><em><span id="h-agent">29</span> agent AI</em><br>bekerja sama.</h1>
+        <p class="sub" data-muncul style="--jeda:2">Markas Cell adalah gedung virtual untuk tim agent AI. Cell memberi perintah, Jarvis membagi tugas, Bayu mengerjakan, Vera memeriksa. Hasil baru dikirim setelah Cell bilang OK.</p>
+        <div class="aksi" data-muncul style="--jeda:3">
+          <a class="tombol tombol-emas" href="papan.html">Buka Papan Tugas →</a>
+          <a class="tombol tombol-garis" href="#gedung">Naik ke gedung</a>
+        </div>
+        <div class="angka-hero" data-muncul style="--jeda:4">
+          <div><b id="a-agent">0</b><span>agent AI</span></div>
+          <div><b id="a-divisi">0</b><span>divisi</span></div>
+          <div><b id="a-manajer">0</b><span>manajer</span></div>
+          <div><b id="a-lantai">0</b><span>lantai</span></div>
+        </div>
+        <a class="isyarat-gulir" href="#alur" data-muncul style="--jeda:5"><i></i>Scroll untuk masuk</a>
+      </div>
+
+      <div class="panggung" data-muncul="skala" style="--jeda:2" id="panggung">
+        <canvas class="seni" id="kanvas-hero" role="img" aria-label="Gedung Menara Agent milik Markas Cell di kota malam, dengan agent berjalan di depannya"></canvas>
+        <div class="chip-melayang" style="left:5%;top:14%"><img class="pixel" data-ava="Jarvis" alt=""><div>Jarvis<small>membagi tugas</small></div></div>
+        <div class="chip-melayang" style="right:4%;top:42%;animation-delay:-2s"><img class="pixel" data-ava="Bayu" alt=""><div>Bayu<small>membuat web</small></div></div>
+        <div class="chip-melayang" style="left:6%;bottom:22%;animation-delay:-4s"><img class="pixel" data-ava="Vera" alt=""><div>Vera<small>QA lulus ✓</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pita" aria-hidden="true"><div class="pita-jalan" id="pita"></div></div>
+
+  <!-- ===== ALUR ===== -->
+  <section class="bagian" id="alur">
+    <div class="wadah">
+      <div class="bagian-kepala">
+        <span class="label" data-muncul>Cara kerja crew</span>
+        <h2 data-muncul style="--jeda:1">Seperti dapur restoran, tapi kokinya agent AI.</h2>
+        <p data-muncul style="--jeda:2">Pesanan masuk ke kasir, dimasak koki, dicicipi kepala dapur, lalu disetujui pemilik. Tidak ada langkah yang boleh dilompati, dan semua tercatat di database.</p>
+      </div>
+      <div data-muncul style="--jeda:2">
+        <div class="alur" id="alur-crew"><div class="alur-garis"></div><div class="alur-paket" id="paket"></div></div>
+        <div class="log-alur" id="log-alur" aria-live="off"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CERITA GEDUNG (lift) ===== -->
+  <section class="bagian" id="gedung" style="padding-top:40px">
+    <div class="wadah">
+      <div class="bagian-kepala">
+        <span class="label" data-muncul>Gedung 5 lantai</span>
+        <h2 data-muncul style="--jeda:1">Naik lift, lihat siapa yang sedang bekerja.</h2>
+        <p data-muncul style="--jeda:2">Warna jendela di logo adalah warna lantai. Setiap agent duduk di mejanya saat bekerja, dan naik ke rooftop saat santai.</p>
+      </div>
+      <div class="cerita">
+        <div class="cerita-langkah" id="cerita-langkah"></div>
+        <div class="cerita-layar">
+          <div class="layar-lift" id="layar-lift">
+            <canvas class="seni" id="kanvas-lift" role="img" aria-label="Isi lantai gedung"></canvas>
+            <div class="pintu kiri"></div><div class="pintu kanan"></div>
+          </div>
+          <div class="panel-lift">
+            <div class="angka-lift" id="angka-lift">1</div>
+            <div><div class="nama-lift" id="nama-lift">Lantai Klien</div><div class="ket-lift" id="ket-lift">-</div></div>
+            <div class="tombol-lantai" id="tombol-lantai" role="group" aria-label="Pilih lantai"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATISTIK ===== -->
+  <section class="bagian" style="padding-top:0">
+    <div class="wadah">
+      <div class="bagian-kepala">
+        <span class="label" data-muncul>Sekarang di markas</span>
+        <h2 data-muncul style="--jeda:1">Angka langsung dari database.</h2>
+        <p data-muncul style="--jeda:2" id="ket-statistik">Diperbarui otomatis setiap beberapa detik.</p>
+      </div>
+      <div class="statistik" data-muncul style="--jeda:2">
+        <div class="stat" style="--w:var(--s-kerja)"><div class="k"><i></i>Sedang kerja</div><b id="st-kerja">0</b><small>agent di mejanya</small></div>
+        <div class="stat" style="--w:var(--s-menunggu)"><div class="k"><i></i>Menunggu</div><b id="st-menunggu">0</b><small>butuh jawaban</small></div>
+        <div class="stat" style="--w:var(--s-santai)"><div class="k"><i></i>Santai</div><b id="st-santai">0</b><small>di rooftop</small></div>
+        <div class="stat" style="--w:var(--s-qa)"><div class="k"><i></i>Perlu OK kamu</div><b id="st-ok">0</b><small>lolos QA</small></div>
+        <div class="stat" style="--w:var(--emas)"><div class="k"><i></i>Token hari ini</div><b id="st-token">0</b><small id="st-biaya">biaya $0,00</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FITUR ===== -->
+  <section class="bagian" style="padding-top:0">
+    <div class="wadah">
+      <div class="bagian-kepala">
+        <span class="label" data-muncul>Fitur</span>
+        <h2 data-muncul style="--jeda:1">Semua kerja tim, terlihat di satu tempat.</h2>
+      </div>
+      <div class="grid-3">
+        <a class="kartu" href="papan.html" data-muncul style="--jeda:0">
+          <canvas class="seni" data-lantai="2" aria-hidden="true"></canvas>
+          <h3>Papan Tugas</h3>
+          <p>Beri perintah ke Jarvis, lihat tugas berjalan dari Antre sampai Menunggu OK, lalu klik OK atau Revisi.</p>
+          <span class="tautan">Buka papan →</span>
+        </a>
+        <a class="kartu" href="crew.html" data-muncul style="--jeda:1">
+          <canvas class="seni" data-lantai="4" aria-hidden="true"></canvas>
+          <h3>Kenali Crew</h3>
+          <p>Kartu setiap agent: jabatan, atasan, model AI, alat, status sekarang, dan riwayat tugasnya.</p>
+          <span class="tautan">Lihat crew →</span>
+        </a>
+        <a class="kartu" href="pantau.html" data-muncul style="--jeda:2">
+          <canvas class="seni" data-lantai="3" aria-hidden="true"></canvas>
+          <h3>Pantau Biaya</h3>
+          <p>Token dan biaya per agent hari ini, beban CPU dan RAM laptop, serta catatan kejadian terbaru.</p>
+          <span class="tautan">Buka pantau →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="bagian" style="padding-top:0">
+    <div class="wadah">
+      <div class="cta" data-muncul="skala">
+        <canvas class="seni" data-lantai="5" aria-hidden="true"></canvas>
+        <span class="label">Mulai</span>
+        <h2>Beri satu perintah ke Jarvis.</h2>
+        <p>Klik dua kali MULAI.bat (server dan worker menyala bersamaan), lalu buka Papan Tugas. Crew langsung bekerja, kamu tinggal menyetujui hasilnya.</p>
+        <a class="tombol tombol-emas" href="papan.html">Buka Papan Tugas →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="kaki">
+  <div class="wadah">
+    <span>© 2026 Markas Cell · AI Studio milik Cell</span>
+    <span data-perlu-server><a href="lama/">Tampilan lama (gedung 3D & kontrol)</a></span>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/pixel.js"></script>
+<script src="js/umum.js"></script>
+<script src="js/seni.js"></script>
+<script src="js/beranda.js"></script>
+</body>
+</html>

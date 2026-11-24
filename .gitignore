@@ -1,0 +1,12 @@
+data/markas.db
+data/markas-demo.db
+data/*.db-wal
+data/*.db-shm
+data/cadangan/
+hasil/
+__pycache__/
+.env
+laporan/
+foto_website/
+preview_web/
+*.zip

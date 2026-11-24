@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kenali Crew · Markas Cell</title>
+  <link rel="icon" href="img/logo.svg">
+  <meta name="theme-color" content="#12110f">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Silkscreen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/crew.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wadah">
+    <a class="merek" href="index.html"><img src="img/logo.svg" alt=""> MARKAS <b>CELL</b></a>
+    <nav class="nav-menu" aria-label="Menu utama">
+      <a href="index.html">Beranda</a>
+      <a href="papan.html">Papan Tugas</a>
+      <a href="crew.html" aria-current="page">Kenali Crew</a>
+      <a href="pantau.html">Pantau</a>
+      <a href="/lama/markas.html" data-perlu-server>Gedung 3D</a>
+    </nav>
+    <div class="nav-kanan">
+      <span class="lencana-live"><i class="titik demo"></i><span class="teks">Memeriksa…</span></span>
+      <button class="tombol-menu" aria-label="Buka menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="wadah">
+  <section class="kepala-halaman">
+    <span class="label" data-muncul>Kenali crew</span>
+    <h1 id="judul-crew" data-muncul style="--jeda:1">29 agent, 9 divisi, satu atasan.</h1>
+    <p data-muncul style="--jeda:2">Setiap agent punya jabatan, atasan, model AI, dan alat kerja sendiri. Titik berwarna menunjukkan statusnya sekarang. Klik kartu untuk melihat detail dan riwayat tugasnya.</p>
+    <div class="baris-alat">
+      <label class="sr" for="cari">Cari agent</label>
+      <input class="input" id="cari" type="search" placeholder="Cari nama atau jabatan…" style="flex:0 1 280px">
+    </div>
+    <div class="chip-filter baris-alat" id="filter" role="group" aria-label="Saring per divisi"></div>
+  </section>
+
+  <section class="grid-crew" id="grid-crew" aria-live="polite"></section>
+</main>
+
+<dialog class="dialog" id="detail" aria-labelledby="nama-detail">
+  <button class="tutup" type="button" aria-label="Tutup" data-tutup>✕</button>
+  <div id="isi-detail"></div>
+</dialog>
+
+<footer class="kaki">
+  <div class="wadah">
+    <span>© 2026 Markas Cell</span>
+    <span>Data dari data/tim.json</span>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/pixel.js"></script>
+<script src="js/umum.js"></script>
+<script src="js/crew.js"></script>
+</body>
+</html>
